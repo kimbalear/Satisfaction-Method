@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Satisfaction Survey</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <link rel="stylesheet" href="styles/css/main.css" />
+  </head>
+  <div class="grid-body">
+    <div class="header">
+      <div class="progressbar">
+        <ul>
+          <li class="step1 active"></li>
+          <li class="step2"></li>
+          <li class="step3"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="section">
+
+        <div class="grid-survey">
+          <div class="grid-row card">
+            <div class="subtitle">
+              ¡Hola! Te felicitamos porque cuidas de tu salud.
+            </div>
+            <div class="para">
+              Para mejorar nuestro servicio y la atención que te brindamos, nos
+              encantaría saber tu opinión. Tu participación en esta breve
+              encuesta es voluntaria.
+            </div>
+            <div class="img-c">
+              <div class="i-ini"></div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="section" style="display: none">
+
+        <div class="grid-survey" name="step2an1" >
+          <div class="subtitle-s">¿Qué servicio(s) recibiste?*</div>
+
+          <div class="grid-row">
+            <label class="checkbox para"
+              >Consulta general
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row">
+            <label class="checkbox para"
+              >Pananicolaou, IVAA o citología
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row">
+            <label class="checkbox para"
+              >Consejería en métodos antoptceptivos
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row">
+            <label class="checkbox para"
+              >Entrega de métodos antoptceptivos
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row">
+            <label class="checkbox para"
+              >Atención a infecciones de transmisión sexual (ITS)
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row">
+            <label class="checkbox para"
+              >Otros
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <div class="subtitle-s">
+            ¿Te brindaron información sobre métodos antoptceptivos?*
+          </div>
+
+          <div class="yn_radio_cnt">
+            <label class="radio para"
+              >Si
+              <input type="radio" name="step2brk1y" value="Si"/>
+              <span class="radiomark"></span>
+            </label>
+            <label class="radio para"
+              >No
+              <input type="radio" name="step2brk1y" value="No" />
+              <span class="radiomark"></span>
+            </label>
+          </div>
+
+        </div>
+        <div class="grid-survey" name="step2an2" style="display: none">
+
+          <div class="grid-row para">
+            <label class="checkbox para"
+              >Pastillas anticonceptivas
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row para">
+            <label class="checkbox para"
+              >Inyección
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row para">
+            <label class="checkbox para"
+              >DIU
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row para">
+            <label class="checkbox para"
+              >Implante
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row para">
+            <label class="checkbox para"
+              >Condones
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="grid-row para">
+            <label class="checkbox para"
+              >Otro
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="display: none">
+        
+        <div id="qnr">
+
+          <div class="question">
+            <div class="question-answer">
+              <div class="text-question para">¿Cuál es tu satisfacción general con el servicio otorgado?</div>
+              <div class="answer-selected"></div>
+            </div>
+            <div class="optns">
+              <div class="opt one" data-value="1"></div>
+              <div class="opt two" data-value="2"></div>
+              <div class="opt three" data-value="3"></div>
+              <div class="opt four" data-value="4"></div>
+              <div class="opt five" data-value="5"></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <div class="question-answer">
+              <div class="text-question para">¿Qué tal te pareció el tiempo de espera para el servicio?</div>
+              <div class="answer-selected"></div>
+            </div>
+            <div class="optns">
+              <div class="opt one" data-value="1"></div>
+              <div class="opt two" data-value="2"></div>
+              <div class="opt three" data-value="3"></div>
+              <div class="opt four" data-value="4"></div>
+              <div class="opt five" data-value="5"></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <div class="question-answer">
+              <div class="text-question para">¿Qué tal te pareció amabilidad del personal (no médico) de la clínica?</div>
+              <div class="answer-selected"></div>
+            </div>
+            <div class="optns">
+              <div class="opt one" data-value="1"></div>
+              <div class="opt two" data-value="2"></div>
+              <div class="opt three" data-value="3"></div>
+              <div class="opt four" data-value="4"></div>
+              <div class="opt five" data-value="5"></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <div class="question-answer">
+              <div class="text-question para">¿Qué tal te pareció amabilidad del doctor o de la doctora que te atendió?</div>
+              <div class="answer-selected"></div>
+            </div>
+            <div class="optns">
+              <div class="opt one" data-value="1"></div>
+              <div class="opt two" data-value="2"></div>
+              <div class="opt three" data-value="3"></div>
+              <div class="opt four" data-value="4"></div>
+              <div class="opt five" data-value="5"></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <div class="question-answer">
+              <div class="text-question para">¿El doctor o la doctora que te atendió te brindó la información de una manera clara y entendible?</div>
+              <div class="answer-selected"></div>
+            </div>
+            <div class="optns">
+              <div class="opt one" data-value="1"></div>
+              <div class="opt two" data-value="2"></div>
+              <div class="opt three" data-value="3"></div>
+              <div class="opt four" data-value="4"></div>
+              <div class="opt five" data-value="5"></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <div class="question-answer">
+              <div class="text-question para">¿Consideras que el doctor o doctora se tomó el tiempo para evaluar tus intereses y/o preocupaciones y resolver tus dudas?</div>
+              <div class="answer-selected"></div>
+            </div>
+            <div class="optns">
+              <div class="opt one" data-value="1"></div>
+              <div class="opt two" data-value="2"></div>
+              <div class="opt three" data-value="3"></div>
+              <div class="opt four" data-value="4"></div>
+              <div class="opt five" data-value="5"></div>
+            </div>
+          </div>
+
+          <div class="question">
+            <div class="question-answer">
+              <div class="text-question para">¿Recomendarías el servicio y la clínica a un amigo y/o amiga?</div>
+              <div class="answer-selected"></div>
+            </div>
+            <div class="optns">
+              <div class="opt one" data-value="1"></div>
+              <div class="opt two" data-value="2"></div>
+              <div class="opt three" data-value="3"></div>
+              <div class="opt four" data-value="4"></div>
+              <div class="opt five" data-value="5"></div>
+            </div>
+          </div>
+
+        </div>
+        
+        
+      </div>
+    </div>
+    <div class="footer">
+      <div id="back" class="btn-primary" style="display: none">Anterior</div>
+      <div id="next" class="btn-primary">Siguiente</div>
+    </div>
+  </div>
+</html>
