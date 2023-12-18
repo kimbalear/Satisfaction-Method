@@ -35,7 +35,7 @@ $(document).ready(function () {
         .hide()
         .find('input[type="checkbox"]')
         .prop("checked", false);
-      $('[name="step2an3"]')
+        $('[name="step2an3"]')
         .hide()
         .find('input[type="checkbox"]')
         .prop("checked", false);
@@ -62,45 +62,27 @@ $(document).ready(function () {
 
   // Function to update the status of the "Siguiente" button
   function updateNextButtonState() {
-    var isStep2an1Checked =
-      $('[name="step2an1"]').find('input[type="checkbox"]:checked').length > 0;
+    var isStep2an1Checked = $('[name="step2an1"]').find('input[type="checkbox"]:checked').length > 0;
 
-    var isStep2an2Checked =
-      $('[name="step2an2"]').find('input[type="checkbox"]:checked').length > 0;
-    var isStep2an3Checked =
-      $('[name="step2an3"]').find('input[type="checkbox"]:checked').length > 0;
+    var isStep2an2Checked =$('[name="step2an2"]').find('input[type="checkbox"]:checked').length > 0;
+    var isStep2an3Checked =$('[name="step2an3"]').find('input[type="checkbox"]:checked').length > 0;
     var areOptionsVisible = currentStep === 3 && $(".optns:visible").length > 0;
 
     if (currentStep === 1) {
       $btnNext.show();
     } else if (currentStep === 2) {
-      if (selectedValue > 3 && isStep2an1Checked) {
-        console.log("contento y al menos un check");
-        $('[name="happy"]').show();
+      if(selectedValue > 3 && isStep2an1Checked){
+        console.log("contento y al menos un check")
         $btnNext.show();
+      }else if(selectedValue < 4 && isStep2an1Checked && isStep2an2Checked){
+
       }
-
-      if (selectedValue < 4 && isStep2an1Checked && isStep2an2Checked) {
-        var effectsS = $('[name="checkAns3"]').prop("checked");
-
-        console.log("effectsS: " + effectsS);
-
-        if (effectsS) {
-          if (isStep2an3Checked) {
-            console.log("descontento y con effectos colaterales");
-            $btnNext.show();
-          }else{
-            $btnNext.hide();
-          } //TODO
-        } else {
-          console.log("descontento y SIN effectos colaterales");
-          $btnNext.show();
-        }
-      } else {
+      else{ 
         $btnNext.hide();
       }
 
-      /*
+
+/*
       if ($('input[type="radio"][name="step2brk1y"]:checked').val() === "Si") {
         $btnNext.toggle(isStep2an1Checked && isStep2an2Checked);
       } else if (
@@ -156,18 +138,19 @@ $(document).ready(function () {
   });
 
   $('input[type="checkbox"][name="checkAns3"]').change(function () {
-    var checkans = $(this).prop("checked");
+    var checkans = $(this).prop("checked")
     var value = $(this).val();
-
-    if (checkans == true) {
-      $('[name="step2an3"]').show();
-    } else {
+    
+    if (checkans == true){
+      $('[name="step2an3"]')
+        .show();
+    }else{
       $('[name="step2an3"]')
         .hide()
         .find('input[type="checkbox"]')
         .prop("checked", false);
     }
-    console.log("Valor: " + value + " - " + checkans);
+    console.log("Valor: " + value + " - " +checkans)
 
     updateNextButtonState();
   });
