@@ -15,10 +15,12 @@
           <li class="step1 active"></li>
           <li class="step2"></li>
           <li class="step3"></li>
+          <li class="step4"></li>
         </ul>
       </div>
     </div>
     <div class="wrapper">
+
       <div class="section">
         <div class="grid-survey">
           <div class="grid-row card">
@@ -95,13 +97,11 @@
               <span class="checkmark"></span>
             </label>
           </div>
-
+          <!-- TODO -->
           <div id="qnr">
             <div class="question">
               <div class="question-answer">
-                <div class="text-question">
-                  ¿Estás contenta con tu método?
-                </div>
+                <div class="text-question">¿Estás contenta con tu método?</div>
                 <div class="answer-selected"></div>
               </div>
               <div class="optns">
@@ -113,27 +113,14 @@
               </div>
             </div>
           </div>
-
-          <div class="subtitle-s">
-            ¿Cuál es la principal razón por la que no estás contenta con tu método?
-          </div>
-      <!--
-          <div class="yn_radio_cnt">
-            <label class="radio para"
-              >Si
-              <input type="radio" name="step2brk1y" value="Si"/>
-              <span class="radiomark"></span>
-            </label>
-            <label class="radio para"
-              >No
-              <input type="radio" name="step2brk1y" value="No" />
-              <span class="radiomark"></span>
-            </label>
-          </div>
--->
         </div>
-
-        <div class="grid-survey" name="step2an2">
+        <!-- TODO -->
+        <div class="grid-survey" name="step2an2" style="display: none">
+          
+          <div class="subtitle-s">
+            ¿Cuál es la principal razón por la que no estás contenta con tu
+            método?
+          </div>
           <div class="grid-row para">
             <label class="checkbox para"
               >Podría estar embarazada
@@ -151,7 +138,7 @@
           <div class="grid-row para">
             <label class="checkbox para"
               >Efectos secundarios
-              <input type="checkbox" />
+              <input type="checkbox" name="checkAns3"/>
               <span class="checkmark"></span>
             </label>
           </div>
@@ -164,10 +151,12 @@
           </div>
         </div>
 
-        <div class="subtitle-s">
-          ¿Qué efectos secundarios presentas por los que no estás contenta con tu método?
-        </div>
-        <div class="grid-survey" name="step2an3">
+        <!-- TODO -->
+        <div class="grid-survey" name="step2an3" style="display: none">
+          <div class="subtitle-s">
+            ¿Qué efectos secundarios presentas por los que no estás contenta con
+            tu método?
+          </div>
           <div class="grid-row para">
             <label class="checkbox para"
               >Cambios en mi período menstrual
@@ -212,6 +201,7 @@
           </div>
         </div>
       </div>
+      <div class="section" style="display: none"></div>
     </div>
     <div class="footer">
       <div id="back" class="btn-primary" style="display: none">Anterior</div>
