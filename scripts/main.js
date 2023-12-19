@@ -63,7 +63,9 @@ $(document).ready(function () {
   function updateNextButtonState() {
     var isStep2an1Checked =
       $('input[type="radio"][name="step2cks1"]:checked').length > 0;
-    var isStep2an2Checked = $('input[type="radio"][name="step2cks2"]').is(':checked');
+    var isStep2an2Checked = $('input[type="radio"][name="step2cks2"]').is(
+      ":checked"
+    );
 
     var isStep2an3Checked =
       $('[name="step2an3"]').find('input[type="checkbox"]:checked').length > 0;
@@ -76,6 +78,8 @@ $(document).ready(function () {
       $btnNext.hide();
       if (selectedValue > 3 && isStep2an1Checked) {
         console.log("contento y al menos un check");
+        $('[name="Effects"]').hide();
+        $('[name="NotEffects"]').hide();
         $('[name="happy"]').show();
         $btnNext.show();
       }
@@ -83,16 +87,25 @@ $(document).ready(function () {
       if (selectedValue < 4) {
         if (isEfectosSecundariosSelected) {
           console.log("Efectos secundarios está seleccionado.");
-          if (isStep2an3Checked) { 
+          if (isStep2an3Checked) {
             $btnNext.show();
-          }else{
+            $('[name="happy"]').hide();
+            $('[name="NotEffects"]').hide();
+            $('[name="Effects"]').show();
+          } else {
             $btnNext.hide();
+            $('[name="happy"]').hide();
+            $('[name="NotEffects"]').hide();
+            $('[name="Effects"]').hide();
           }
         } else {
           console.log("Efectos secundarios no está seleccionado");
-          if(isStep2an1Checked && isStep2an2Checked){
+          if (isStep2an1Checked && isStep2an2Checked) {
             console.log("Efectos secundarios no está seleccionado.#!");
             $btnNext.show();
+            $('[name="happy"]').hide();
+            $('[name="Effects"]').hide();
+            $('[name="NotEffects"]').show();
           }
         }
       }
