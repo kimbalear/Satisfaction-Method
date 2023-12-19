@@ -3,6 +3,7 @@ $(document).ready(function () {
   var $btnNext = $("#next");
   var $btnBack = $("#back");
   var selectedValue = 0;
+  var isEfectosSecundariosSelected;
 
   // Hide the "Siguiente" button at startup
   $btnNext.hide();
@@ -31,7 +32,7 @@ $(document).ready(function () {
     } else {
       $('[name="step2an2"]')
         .hide()
-        .find('input[type="checkbox"]')
+        .find('input[type="radio"]')
         .prop("checked", false);
       $('[name="step2an3"]')
         .hide()
@@ -60,12 +61,10 @@ $(document).ready(function () {
 
   // Function to update the status of the "Siguiente" button
   function updateNextButtonState() {
-    // ? isStep2an1Checked
     var isStep2an1Checked =
-      $('[name="step2an1"]').find('input[type="checkbox"]:checked').length > 0;
+      $('input[type="radio"][name="step2cks1"]:checked').length > 0;
+    var isStep2an2Checked = $('input[type="radio"][name="step2cks2"]').is(':checked');
 
-    var isStep2an2Checked =
-      $('[name="step2an2"]').find('input[type="checkbox"]:checked').length > 0;
     var isStep2an3Checked =
       $('[name="step2an3"]').find('input[type="checkbox"]:checked').length > 0;
     var areOptionsVisible = currentStep === 3 && $(".optns:visible").length > 0;
@@ -74,31 +73,29 @@ $(document).ready(function () {
       $btnNext.show();
     }
     if (currentStep === 2) {
+      $btnNext.hide();
       if (selectedValue > 3 && isStep2an1Checked) {
         console.log("contento y al menos un check");
         $('[name="happy"]').show();
         $btnNext.show();
       }
 
-      if (selectedValue < 4 && isStep2an2Checked) {
-        var effectsS = $('[name="checkAns3"]').prop("checked");
-
-        if (effectsS) {
-          console.log("descontento y con effectos colaterales");
-          console.log("effectsS: " + effectsS + " - isStep2an3Checked: " + isStep2an3Checked);
-
+      if (selectedValue < 4) {
+        if (isEfectosSecundariosSelected) {
+          console.log("Efectos secundarios está seleccionado.");
           if (isStep2an3Checked) { 
             $btnNext.show();
           }else{
             $btnNext.hide();
-          } //TODO Cuando es happy no esta mostrando btn siguiente
+          }
         } else {
-          console.log("descontento y SIN effectos colaterales");
-          console.log("effectsS: " + effectsS);
-          $btnNext.show();
+          console.log("Efectos secundarios no está seleccionado");
+          if(isStep2an1Checked && isStep2an2Checked){
+            console.log("Efectos secundarios no está seleccionado.#!");
+            $btnNext.show();
+          }
         }
       }
-
     }
     if (currentStep === 3) {
       $btnNext.toggle(checkAllQuestionsAnswered() && !areOptionsVisible);
@@ -142,10 +139,12 @@ $(document).ready(function () {
     updateNextButtonState();
   });
 
-  $('input[type="checkbox"][name="checkAns3"]').change(function () {
-    var checkans = $(this).prop("checked");
+  $('input[type="radio"][name="step2cks2"]').on("change", function () {
+    isEfectosSecundariosSelected = $(
+      'input[type="radio"][name="step2cks2"][value="efectsec"]'
+    ).is(":checked");
 
-    if (checkans == true) {
+    if (isEfectosSecundariosSelected) {
       $('[name="step2an3"]').show();
     } else {
       $('[name="step2an3"]')
@@ -153,23 +152,13 @@ $(document).ready(function () {
         .find('input[type="checkbox"]')
         .prop("checked", false);
     }
-
     updateNextButtonState();
   });
 
-  $('input[type="checkbox"][name="checkAns3"]').change(function () {
-    var checkans = $(this).prop("checked");
-
-    if (checkans == true) {
-      $('[name="step2an3"]').show();
-    } else {
-      $('[name="step2an3"]')
-        .hide()
-        .find('input[type="checkbox"]')
-        .prop("checked", false);
-    }
-
-    updateNextButtonState();
+  $('[name="step2an1"] input[type="checkbox"]').on("change", function () {
+    isStep2an1Checked =
+      $('[name="step2an1"]').find('input[type="checkbox"]:checked').length > 0;
+    console.log("Check isStep2an1Checked: " + isStep2an1Checked);
   });
 
   // Events to update the state of the "Siguiente" button
