@@ -27,10 +27,8 @@ $(document).ready(function () {
 
     // TODO
     if (selectedValue < 4) {
-      console.log("muestro1");
       $('[name="step2an2"]').show();
     } else {
-      console.log("escondo");
       $('[name="step2an2"]')
         .hide()
         .find('input[type="checkbox"]')
@@ -83,17 +81,18 @@ $(document).ready(function () {
       if (selectedValue < 4 && isStep2an1Checked && isStep2an2Checked) {
         var effectsS = $('[name="checkAns3"]').prop("checked");
 
-        console.log("effectsS: " + effectsS);
-
         if (effectsS) {
-          if (isStep2an3Checked) {
-            console.log("descontento y con effectos colaterales");
+          console.log("descontento y con effectos colaterales");
+          console.log("effectsS: " + effectsS + " - isStep2an3Checked: " + isStep2an3Checked);
+
+          if (isStep2an3Checked) { 
             $btnNext.show();
           }else{
             $btnNext.hide();
-          } //TODO
+          } //TODO Cuando es happy no esta mostrando btn siguiente
         } else {
           console.log("descontento y SIN effectos colaterales");
+          console.log("effectsS: " + effectsS);
           $btnNext.show();
         }
       } else {
@@ -157,7 +156,6 @@ $(document).ready(function () {
 
   $('input[type="checkbox"][name="checkAns3"]').change(function () {
     var checkans = $(this).prop("checked");
-    var value = $(this).val();
 
     if (checkans == true) {
       $('[name="step2an3"]').show();
@@ -167,7 +165,6 @@ $(document).ready(function () {
         .find('input[type="checkbox"]')
         .prop("checked", false);
     }
-    console.log("Valor: " + value + " - " + checkans);
 
     updateNextButtonState();
   });
