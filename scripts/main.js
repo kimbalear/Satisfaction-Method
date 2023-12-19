@@ -60,6 +60,7 @@ $(document).ready(function () {
 
   // Function to update the status of the "Siguiente" button
   function updateNextButtonState() {
+    // ? isStep2an1Checked
     var isStep2an1Checked =
       $('[name="step2an1"]').find('input[type="checkbox"]:checked').length > 0;
 
@@ -71,14 +72,15 @@ $(document).ready(function () {
 
     if (currentStep === 1) {
       $btnNext.show();
-    } else if (currentStep === 2) {
+    }
+    if (currentStep === 2) {
       if (selectedValue > 3 && isStep2an1Checked) {
         console.log("contento y al menos un check");
         $('[name="happy"]').show();
         $btnNext.show();
       }
 
-      if (selectedValue < 4 && isStep2an1Checked && isStep2an2Checked) {
+      if (selectedValue < 4 && isStep2an2Checked) {
         var effectsS = $('[name="checkAns3"]').prop("checked");
 
         if (effectsS) {
@@ -95,25 +97,11 @@ $(document).ready(function () {
           console.log("effectsS: " + effectsS);
           $btnNext.show();
         }
-      } else {
-        $btnNext.hide();
       }
 
-      /*
-      if ($('input[type="radio"][name="step2brk1y"]:checked').val() === "Si") {
-        $btnNext.toggle(isStep2an1Checked && isStep2an2Checked);
-      } else if (
-        $('input[type="radio"][name="step2brk1y"]:checked').val() === "No"
-      ) {
-        $btnNext.toggle(isStep2an1Checked);
-      } else {
-        $btnNext.hide();
-      }
-*/
-    } else if (currentStep === 3) {
+    }
+    if (currentStep === 3) {
       $btnNext.toggle(checkAllQuestionsAnswered() && !areOptionsVisible);
-    } else {
-      $btnNext.hide();
     }
   }
 
@@ -151,6 +139,21 @@ $(document).ready(function () {
         $("#back").hide();
       }
     }
+    updateNextButtonState();
+  });
+
+  $('input[type="checkbox"][name="checkAns3"]').change(function () {
+    var checkans = $(this).prop("checked");
+
+    if (checkans == true) {
+      $('[name="step2an3"]').show();
+    } else {
+      $('[name="step2an3"]')
+        .hide()
+        .find('input[type="checkbox"]')
+        .prop("checked", false);
+    }
+
     updateNextButtonState();
   });
 
