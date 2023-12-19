@@ -159,6 +159,7 @@ $(document).ready(function () {
 
     if (isEfectosSecundariosSelected) {
       $('[name="step2an3"]').show();
+      $('.wrapper').animate({ scrollTop: $(document).height() }, "slow");
     } else {
       $('[name="step2an3"]')
         .hide()
