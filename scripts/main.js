@@ -2,91 +2,34 @@ $(document).ready(function () {
   var currentStep = 1;
   var $btnNext = $("#next");
   var $btnBack = $("#back");
-  var selectedValue = 0;
   var isEfectosSecundariosSelected;
 
   // Hide the "Siguiente" button at startup
   $btnNext.hide();
 
-  // Function to handle clicking on an icon
-  function handleIconClick() {
-    selectedValue = $(this).data("value");
-    var step3QuizContainer = $(this).closest(".question");
-    step3QuizContainer.find(".optns").hide();
-    step3QuizContainer
-      .find(".answer-selected")
-      .html($(this).clone())
-      .show()
-      .data("value", selectedValue)
-      .off("click")
-      .click(function () {
-        // When 'answer-selected' is clicked, hide the "Siguiente" button
-        $(this).hide().empty();
-        step3QuizContainer.find(".optns").show();
-        $btnNext.hide(); // Hide the "Siguiente" button
-      });
-
-    // TODO
-    if (selectedValue < 4) {
-      $('[name="step2an2"]').show();
-    } else {
-      $('[name="step2an2"]')
-        .hide()
-        .find('input[type="radio"]')
-        .prop("checked", false);
-      $('[name="step2an3"]')
-        .hide()
-        .find('input[type="checkbox"]')
-        .prop("checked", false);
-    }
-  }
-
-  // Assign the click event to icons
-  $(".opt").click(handleIconClick);
-
-  // Initially hide all 'answers selected'
-  $(".answer-selected").hide();
-
-  // Function to check if all questions have been answered
-  function checkAllQuestionsAnswered() {
-    var allAnswered = true;
-    $("#qnr .question").each(function () {
-      if ($(this).find(".answer-selected").is(":empty")) {
-        allAnswered = false;
-        return false;
-      }
-    });
-    return allAnswered;
-  }
-
   // Function to update the status of the "Siguiente" button
   function updateNextButtonState() {
-    var isStep2an1Checked =
-      $('input[type="radio"][name="step2cks1"]:checked').length > 0;
-    var isStep2an2Checked = $('input[type="radio"][name="step2cks2"]').is(
-      ":checked"
-    );
-
-    var isStep2an3Checked =
-      $('[name="step2an3"]').find('input[type="checkbox"]:checked').length > 0;
-    var areOptionsVisible = currentStep === 3 && $(".optns:visible").length > 0;
+    var isStep2an1Checked = $('input[type="radio"][name="step2cks1"]:checked').length > 0;
+    var isStep2an2Val = $('input[type="radio"][name="step2radio"]:checked').val();
+    var isStep2an2checked = $('input[type="radio"][name="step2cks2"]:checked').length > 0;
+    var isStep2an3Checked = $('[name="step2an3"]').find('input[type="checkbox"]:checked').length > 0;
 
     if (currentStep === 1) {
       $btnNext.show();
     }
     if (currentStep === 2) {
       $btnNext.hide();
-      if (selectedValue > 3 && isStep2an1Checked) {
-        console.log("contento y al menos un check");
+      if (isStep2an1Checked == true && isStep2an2Val == "Si") {
         $('[name="Effects"]').hide();
         $('[name="NotEffects"]').hide();
         $('[name="happy"]').show();
         $btnNext.show();
       }
 
-      if (selectedValue < 4) {
+      if (isStep2an1Checked && isStep2an2Val == "No") {
+
         if (isEfectosSecundariosSelected) {
-          console.log("Efectos secundarios está seleccionado.");
+
           if (isStep2an3Checked) {
             $btnNext.show();
             $('[name="happy"]').hide();
@@ -99,9 +42,7 @@ $(document).ready(function () {
             $('[name="Effects"]').hide();
           }
         } else {
-          console.log("Efectos secundarios no está seleccionado");
-          if (isStep2an1Checked && isStep2an2Checked) {
-            console.log("Efectos secundarios no está seleccionado.#!");
+          if (isStep2an1Checked && isStep2an2checked) {
             $btnNext.show();
             $('[name="happy"]').hide();
             $('[name="Effects"]').hide();
@@ -111,7 +52,7 @@ $(document).ready(function () {
       }
     }
     if (currentStep === 3) {
-      $btnNext.toggle(checkAllQuestionsAnswered() && !areOptionsVisible);
+      $btnNext.html('Cerrar');
     }
   }
 
@@ -126,8 +67,10 @@ $(document).ready(function () {
       $(".section")
         .eq(currentStep - 1)
         .show();
-      if (currentStep > 1) {
+      if (currentStep > 1 && currentStep < 3) {
         $("#back").show();
+      } else {
+        $("#back").hide();
       }
     }
     updateNextButtonState();
@@ -148,6 +91,9 @@ $(document).ready(function () {
       if (currentStep === 1) {
         $("#back").hide();
       }
+      if (currentStep === 4) {
+        $("#back").hide();
+      }
     }
     updateNextButtonState();
   });
@@ -159,7 +105,7 @@ $(document).ready(function () {
 
     if (isEfectosSecundariosSelected) {
       $('[name="step2an3"]').show();
-      $('.wrapper').animate({ scrollTop: $(document).height() }, "slow");
+      $(".wrapper").animate({ scrollTop: $(document).height() }, "slow");
     } else {
       $('[name="step2an3"]')
         .hide()
@@ -172,7 +118,6 @@ $(document).ready(function () {
   $('[name="step2an1"] input[type="checkbox"]').on("change", function () {
     isStep2an1Checked =
       $('[name="step2an1"]').find('input[type="checkbox"]:checked').length > 0;
-    console.log("Check isStep2an1Checked: " + isStep2an1Checked);
   });
 
   // Events to update the state of the "Siguiente" button
@@ -182,6 +127,24 @@ $(document).ready(function () {
     .change(updateNextButtonState);
   $("#qnr .opt").click(function () {
     setTimeout(updateNextButtonState, 1);
+  });
+
+  // 'change' event for 'step2radio' radio buttons
+  $('input[type="radio"][name="step2radio"]').change(function () {
+    var value = $(this).val();
+
+    if (value === "Si") {
+      $('[name="step2an2"]').hide();
+      $('[name="step2an3"]').hide();
+      $('[name="step2an2"]').find('input[type="radio"]').prop("checked", false);
+      $('[name="step2an3"]')
+        .find('input[type="checkbox"]')
+        .prop("checked", false);
+    } else if (value === "No") {
+      $('[name="step2an2"]').show();
+      //$("#next").hide();
+    }
+    updateNextButtonState();
   });
 
   // Initialize "Siguiente" button state on page load
